@@ -1,29 +1,28 @@
 using FulldiveVRVideoProvidersUnifyEngine;
 using FulldiveVRVideoProvidersUnifyEngine.Configs;
-using FulldiveVRVideoProvidersUnifyEngine.Data;
 
 namespace FulldiveVRVideoProvidersUnifyEngineTests.Implementation
 {
     class SiteCrawler: ISiteCrawler
     {
-        private readonly HtmlSiteProviderConfig _config;
+        private readonly HtmlSiteProviderConfigData _configData;
         private readonly IHtmlDocumentTransport _htmlDocumentTransport;
 
-        public SiteCrawler(HtmlSiteProviderConfig config, IHtmlDocumentTransport htmlDocumentTransport)
+        public SiteCrawler(HtmlSiteProviderConfigData configData, IHtmlDocumentTransport htmlDocumentTransport)
         {
-            _config = config;
+            _configData = configData;
             _htmlDocumentTransport = htmlDocumentTransport;
         }
 
         public IDocumentInterface GetListPage(uint pageNumber)
         {
-            var pageUrl = string.Format(this._config.PaginationUrlTemplate, pageNumber);
-            return this._htmlDocumentTransport.GetDocumentByUrl(pageUrl);
+            var pageUrl = string.Format(this._configData.PaginationUrlTemplate, pageNumber);
+            return _htmlDocumentTransport.GetDocumentByUrl(pageUrl);
         }
 
         public uint? GetPagesCount()
         {
-            return _config.PagesCount;
+            return _configData.PagesCount;
         }
     }
 }

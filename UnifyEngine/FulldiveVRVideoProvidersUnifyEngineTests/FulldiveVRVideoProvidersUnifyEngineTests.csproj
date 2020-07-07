@@ -81,12 +81,17 @@
         <Compile Include="Implementation\DocumentInterface.cs" />
         <Compile Include="Implementation\HtmlDocumentTransport.cs" />
         <Compile Include="Implementation\ProviderConfigParser.cs" />
+        <Compile Include="Implementation\ProvidersConfigJsonConverter.cs" />
+        <Compile Include="Implementation\ProvidersList.cs" />
         <Compile Include="Implementation\SiteCrawler.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="ProviderConfigParserTests.cs" />
         <Compile Include="SiteCrawlerTests.cs" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="Data\providers-2.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Content Include="Data\providers.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>

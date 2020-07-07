@@ -1,6 +1,6 @@
 namespace FulldiveVRVideoProvidersUnifyEngine.Configs
 {
-    public class HtmlSiteProviderConfig
+    public class HtmlSiteProviderConfigData
     {
         public string PaginationUrlTemplate { get; }
         public string VideoPageUrlTemplate { get; }
@@ -9,7 +9,7 @@ namespace FulldiveVRVideoProvidersUnifyEngine.Configs
         public string TitlesCssSelector { get; }
         public uint? PagesCount { get; set; }
 
-        public HtmlSiteProviderConfig(
+        public HtmlSiteProviderConfigData(
             string paginationUrlTemplate, 
             string videoPageUrlTemplate, 
             string linksCssSelector, 

@@ -1,11 +1,14 @@
 namespace FulldiveVRVideoProvidersUnifyEngine.Configs
 {
-    // marker
-    public interface IProviderConfigData {}
-    
-    public abstract class ProviderConfig<T> where T: IProviderConfigData{
+    public abstract class ProviderConfig{
         public string Title { get; set; }
+        
+        public string Image { get; set; }
         public ProviderConfigType ProviderType { get; set; }
-        public abstract T ConfigData { get; set; }
+    }
+
+    public class HtmlBasedProviderConfig : ProviderConfig
+    {
+        public HtmlSiteProviderConfigData ConfigData { get; set; }
     }
 }

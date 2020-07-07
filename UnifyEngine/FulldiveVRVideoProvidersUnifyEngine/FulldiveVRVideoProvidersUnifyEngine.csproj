@@ -38,7 +38,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Configs\HtmlSiteProviderConfig.cs" />
+        <Compile Include="Configs\HtmlSiteProviderConfigData.cs" />
         <Compile Include="Configs\ProviderConfig.cs" />
         <Compile Include="Configs\ProviderConfigType.cs" />
         <Compile Include="Data\VideoItemData.cs" />

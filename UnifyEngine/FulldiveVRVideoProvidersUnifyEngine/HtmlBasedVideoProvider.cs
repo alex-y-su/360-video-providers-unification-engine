@@ -9,12 +9,12 @@ namespace FulldiveVRVideoProvidersUnifyEngine
 {
     public class HtmlBasedVideoProvider
     {
-        private readonly HtmlSiteProviderConfig _config;
+        private readonly HtmlSiteProviderConfigData _configData;
         private readonly ISiteCrawler _crawler;
 
-        public HtmlBasedVideoProvider(HtmlSiteProviderConfig config, ISiteCrawler crawler)
+        public HtmlBasedVideoProvider(HtmlSiteProviderConfigData configData, ISiteCrawler crawler)
         {
-            _config = config;
+            _configData = configData;
             _crawler = crawler;
         }
 
@@ -22,10 +22,10 @@ namespace FulldiveVRVideoProvidersUnifyEngine
         {
             var doc = this._crawler.GetListPage(page);
             return EnumExtensions.ZipThree(
-                doc.GetLinksByCssQuery(_config.LinksCssSelector),
-                doc.GetImagesByCssQuery(_config.ImagesCssSelector),
-                doc.GetTitlesByCssQuery(_config.TitlesCssSelector),
-                (l, i, t) => new VideoItemData { Image = i, Link = string.Format(_config.VideoPageUrlTemplate, l), Title = t }
+                doc.GetLinksByCssQuery(_configData.LinksCssSelector),
+                doc.GetImagesByCssQuery(_configData.ImagesCssSelector),
+                doc.GetTitlesByCssQuery(_configData.TitlesCssSelector),
+                (l, i, t) => new VideoItemData { Image = i, Link = string.Format(_configData.VideoPageUrlTemplate, l), Title = t }
             ).ToList();
         }
     }

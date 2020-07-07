@@ -2,6 +2,19 @@
   "schema": "v1",
   "providers": [
     {
+      "title": "Vimeo featured",
+      "image": "",
+      "providerType": "html",
+      "data": {
+        "paginationUrlTemplate": "https://vimeo.com/channels/360vr/videos/page:{0}/sort:preset",
+        "videoPageUrlTemplate": "https://vimeo.com{0}",
+        "linksCssSelector": "ol.js-browse_list > li > a",
+        "imagesCssSelector": "ol.js-browse_list > li > a > img",
+        "titlesCssSelector": "ol.js-browse_list > li > a div.l-ellipsis",
+        "pagesCount": 9
+      }
+    },
+    {
       "title": "Hub",
       "image": "https://ci.phncdn.com/www-static/images/movie-box/logo.png",
       "providerType": "html",

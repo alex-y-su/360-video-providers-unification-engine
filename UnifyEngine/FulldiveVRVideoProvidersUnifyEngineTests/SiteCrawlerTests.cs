@@ -1,7 +1,4 @@
-using System;
-using FulldiveVRVideoProvidersUnifyEngine;
 using FulldiveVRVideoProvidersUnifyEngine.Configs;
-using FulldiveVRVideoProvidersUnifyEngine.Data;
 using FulldiveVRVideoProvidersUnifyEngineTests.Implementation;
 using Xunit;
 using Xunit.Abstractions;
@@ -10,9 +7,7 @@ namespace FulldiveVRVideoProvidersUnifyEngineTests
 {
     public class SiteCrawlerTests
     {
-        ITestOutputHelper _output;
-
-        private static HtmlSiteProviderConfig config = new HtmlSiteProviderConfig(
+        private static readonly HtmlSiteProviderConfigData ConfigData = new HtmlSiteProviderConfigData(
             "https://www.pornhub.com/vr?page={0}",
             "https://www.pornhub.com{0}", 
             "#videoCategory > li.pcVideoListItem div.phimage > a",
@@ -20,7 +15,8 @@ namespace FulldiveVRVideoProvidersUnifyEngineTests
             "#videoCategory > li.pcVideoListItem span.title > a"
         );
         
-        private SiteCrawler _crawler = new SiteCrawler(config, new HtmlDocumentTransport());
+        private readonly ITestOutputHelper _output;
+        private readonly SiteCrawler _crawler = new SiteCrawler(ConfigData, new HtmlDocumentTransport());
 
         public SiteCrawlerTests(ITestOutputHelper output)
         {
@@ -31,7 +27,7 @@ namespace FulldiveVRVideoProvidersUnifyEngineTests
         public void GetListPageTest()
         {
             var page2doc = _crawler.GetListPage(2);
-            var res = page2doc.GetLinksByCssQuery(config.LinksCssSelector);
+            var res = page2doc.GetLinksByCssQuery(ConfigData.LinksCssSelector);
             foreach (var re in res)
             {
                 _output.WriteLine(re);
