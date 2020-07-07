@@ -9,9 +9,8 @@ namespace FulldiveVRVideoProvidersUnifyEngineTests
 {
     public class GetLinksFromFileTests
     {
-        
         [Fact]
-        public void GetLinks()
+        public void GetLinksTest()
         {
             var fileContent = File.ReadAllText("Data/vr.html");
             var doc = new HtmlDocument();

@@ -1,4 +1,6 @@
 using FulldiveVRVideoProvidersUnifyEngine;
+using FulldiveVRVideoProvidersUnifyEngine.Configs;
+using FulldiveVRVideoProvidersUnifyEngine.Data;
 
 namespace FulldiveVRVideoProvidersUnifyEngineTests.Implementation
 {
@@ -21,7 +23,7 @@ namespace FulldiveVRVideoProvidersUnifyEngineTests.Implementation
 
         public uint? GetPagesCount()
         {
-            return 78;
+            return _config.PagesCount;
         }
     }
 }

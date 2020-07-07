@@ -33,7 +33,7 @@ namespace FulldiveVRVideoProvidersUnifyEngineTests.Implementation
         {
             return this._htmlDocument.DocumentNode.CssSelect(query)
                 .Where(x => x != null && x.HasAttributes)
-                .Select(x => x.GetAttributeValue("src"));
+                .Select(x => x.GetAttributeValue("data-src"));
         }
     }
 }

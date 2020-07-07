@@ -42,6 +42,10 @@
           <Private>True</Private>
         </Reference>
         <Reference Include="Microsoft.CSharp" />
+        <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+          <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
         <Reference Include="ScrapySharp.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>..\packages\ScrapySharp.2.6.2\lib\net45\ScrapySharp.Core.dll</HintPath>
           <Private>True</Private>
@@ -73,13 +77,19 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="GetLinksFromFileTests.cs" />
+        <Compile Include="HtmlBasedVideoProviderTests.cs" />
         <Compile Include="Implementation\DocumentInterface.cs" />
         <Compile Include="Implementation\HtmlDocumentTransport.cs" />
+        <Compile Include="Implementation\ProviderConfigParser.cs" />
         <Compile Include="Implementation\SiteCrawler.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="ProviderConfigParserTests.cs" />
         <Compile Include="SiteCrawlerTests.cs" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="Data\providers.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Content Include="Data\vr.html">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>

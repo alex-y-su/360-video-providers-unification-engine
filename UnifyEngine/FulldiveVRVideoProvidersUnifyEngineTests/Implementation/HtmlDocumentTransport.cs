@@ -13,4 +13,12 @@ namespace FulldiveVRVideoProvidersUnifyEngineTests.Implementation
             return htmlWeb.StatusCode != HttpStatusCode.OK ? null : new DocumentInterface(doc);
         }
     }
+    
+    class ProviderRepositoryTransport: IProviderRepositoryTransport
+    {
+        public string GetProvidersList(string url)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

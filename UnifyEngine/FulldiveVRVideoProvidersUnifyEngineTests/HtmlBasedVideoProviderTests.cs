@@ -1,4 +1,3 @@
-using System;
 using FulldiveVRVideoProvidersUnifyEngine;
 using FulldiveVRVideoProvidersUnifyEngine.Configs;
 using FulldiveVRVideoProvidersUnifyEngine.Data;
@@ -8,10 +7,10 @@ using Xunit.Abstractions;
 
 namespace FulldiveVRVideoProvidersUnifyEngineTests
 {
-    public class SiteCrawlerTests
+    public class HtmlBasedVideoProviderTests
     {
-        ITestOutputHelper _output;
-
+        private readonly ITestOutputHelper _output;
+        
         private static HtmlSiteProviderConfig config = new HtmlSiteProviderConfig(
             "https://www.pornhub.com/vr?page={0}",
             "https://www.pornhub.com{0}", 
@@ -19,30 +18,24 @@ namespace FulldiveVRVideoProvidersUnifyEngineTests
             "#videoCategory > li.pcVideoListItem div.phimage > a > img",
             "#videoCategory > li.pcVideoListItem span.title > a"
         );
+
+        private readonly SiteCrawler _crawler = new SiteCrawler(config, new HtmlDocumentTransport());
         
-        private SiteCrawler _crawler = new SiteCrawler(config, new HtmlDocumentTransport());
-
-        public SiteCrawlerTests(ITestOutputHelper output)
+        public HtmlBasedVideoProviderTests(ITestOutputHelper output)
         {
-            this._output = output;
+            _output = output;
         }
 
         [Fact]
-        public void GetListPageTest()
+        public void GetVideoItemsFromPageTest()
         {
-            var page2doc = _crawler.GetListPage(2);
-            var res = page2doc.GetLinksByCssQuery(config.LinksCssSelector);
-            foreach (var re in res)
+            var provider = new HtmlBasedVideoProvider(config, _crawler);
+            var res = provider.GetVideos(2);
+            foreach (var videoItemData in res)
             {
-                _output.WriteLine(re);
+                _output.WriteLine(videoItemData.ToString());
             }
-        }
-
-        [Fact]
-        public void ShouldReturnNullWhenThereIsNoPageTest()
-        {
-            var page = this._crawler.GetListPage(10500);
-            Assert.Null(page);
+            Assert.Equal(44, res.Count); 
         }
     }
 }
