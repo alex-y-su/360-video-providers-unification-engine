@@ -34,15 +34,15 @@ namespace FulldiveVRVideoProvidersUnifyEngineTests.Implementation
         {
             return this._htmlDocument.DocumentNode.CssSelect(query)
                 .Where(x => x != null && x.HasAttributes)
-                .Select(x => GetUrlImageArributeValue(x, _possibleImageUrlAttributeName);
+                .Select(x => GetUrlImageArributeValue(x, _possibleImageUrlAttributeName));
         }
 
-        private string GetUrlImageArributeValue(HtmlNode htmlNode, string[] altAttributeNames)
+        private static string GetUrlImageArributeValue(HtmlNode htmlNode, string[] altAttributeNames)
         {
             string attributeValue = string.Empty;
-            for (int i = 0; i < altAttributeNames.Length; i++)
+            foreach (var attributeName in altAttributeNames)
             {
-                attributeValue = htmlNode.GetAttributeValue(altAttributeNames[i], string.Empty);
+                attributeValue = htmlNode.GetAttributeValue(attributeName, string.Empty);
                 if (Uri.TryCreate(attributeValue, UriKind.Absolute, out Uri uriResult)
                     && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
                 {
